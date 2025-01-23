@@ -11,7 +11,12 @@ class BookmarksScreen extends StatefulWidget {
 
 class _BookmarksScreenState extends State<BookmarksScreen> {
   late Future<DatabaseService> _databaseServiceFuture;
-  final AuthService _authService = AuthService();
+  late AuthService _authService;
+  Future<void> _initialize() async {
+    _authService = await AuthService.getInstance();
+    // Assuming you have a method to check if the article is bookmarked
+  }
+
   List<Article> bookmarks = [];
 
   @override
@@ -19,6 +24,7 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
     super.initState();
     _databaseServiceFuture = DatabaseService.create();
     _loadBookmarks();
+    _initialize();
   }
 
   Future<void> _loadBookmarks() async {

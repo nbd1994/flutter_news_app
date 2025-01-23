@@ -85,14 +85,20 @@ class BookmarkButton extends StatefulWidget {
 
 class _BookmarkButtonState extends State<BookmarkButton> {
   late Future<DatabaseService> _databaseServiceFuture;
-  final AuthService _authService = AuthService();
   bool isBookmarked = false;
+  late AuthService _authService;
+  Future<void> _initialize() async {
+    _authService = await AuthService.getInstance();
+    // Assuming you have a method to check if the article is bookmarked
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
     _databaseServiceFuture = DatabaseService.create();
     _checkIfBookmarked();
+    _initialize();
   }
 
   Future<void> _checkIfBookmarked() async {

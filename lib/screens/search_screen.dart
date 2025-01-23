@@ -109,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
           decoration: InputDecoration(
             hintText: 'Search news...',
             border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.white70),
+            hintStyle: TextStyle(color: const Color.fromARGB(255, 41, 39, 39)),
           ),
           style: TextStyle(color: Colors.white),
           autofocus: true,

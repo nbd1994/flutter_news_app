@@ -5,7 +5,18 @@ import '../services/auth_service.dart';
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final AuthService _authService = AuthService();
+    late AuthService _authService;
+    Future<void> _initialize() async {
+      _authService = await AuthService.getInstance();
+      // Assuming you have a method to check if the article is bookmarked
+    }
+
+    @override
+    void initState() {
+      _initialize();
+    }
+
+    initState();
     final user = _authService.currentUser;
 
     return Scaffold(

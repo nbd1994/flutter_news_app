@@ -73,7 +73,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // final authService = Provider.of<AuthService>(context);
-    final AuthService _authService = AuthService();
+    late AuthService _authService;
+    Future<void> _initialize() async {
+      _authService = await AuthService.getInstance();
+    }
+
+    @override
+    void initState() {
+      _initialize();
+    }
+
+    initState();
+
     final user = _authService.currentUser!;
     return Scaffold(
       appBar: AppBar(
